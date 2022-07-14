@@ -1,6 +1,6 @@
 function solution(n, k) {
     const number = notation(n,k);
-    const result = getSub(number).length;//getSubsequence(number).length;
+    const result = getSub(number).length;
     return result;
 }
 
@@ -9,6 +9,25 @@ function notation(num, k){
     return num.toString(k);
 }
 
+function getSub(number){
+    const arr = number.split('0').filter(n => n !== '');
+    return arr.filter(a => isPrime(Number(a)));
+}
+
+// 소수인지 판별
+function isPrime(number){
+    if(number === 1 || number === 0) return false;
+    for(let i = 2 ; i*i <= number; i++)
+        if(number%i === 0) return false;
+    return true;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// 이전 함수 //
 function isReq(i, j, subNum, number){
     if(subNum.includes('0')) return false;
     
@@ -47,17 +66,4 @@ function getSubsequence(number){
         }
     console.log(number, range)
     return temp;
-}
-
-function getSub(number){
-    const arr = number.split('0').filter(n => n !== '');
-    return arr.filter(a => isPrime(Number(a)));
-}
-
-// 소수인지 판별
-function isPrime(number){
-    if(number === 1 || number === 0) return false;
-    for(let i = 2 ; i*i <= number; i++)
-        if(number%i === 0) return false;
-    return true;
 }
